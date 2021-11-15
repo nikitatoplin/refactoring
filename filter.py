@@ -40,12 +40,12 @@ img = Image.open("img2.jpg")
 pixel_array = np.array(img)
 len_height = len(pixel_array)
 len_width = len(pixel_array[1])
-(size, grad) = get_size_and_grad(len_height, len_width)
+(size, gradient) = get_size_and_grad(len_height, len_width)
 i = 0
 while i < len_height:
     j = 0
     while j < len_width:
-        search_grey(i, j, pixel_array, size, grad)
+        search_grey(i, j, pixel_array, size, gradient)
         j = j + size
     i = i + size
 res = Image.fromarray(pixel_array)
