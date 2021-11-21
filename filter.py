@@ -20,20 +20,12 @@ def get_size_and_grad(height_len, width_len):
 
 
 def search_grey(i, j, array, size, grad):
-    total_grey = 0
-    for row in range(i, i + size):
-        for column in range(j, j + size):
-            red = array[row][column][0]
-            blue = array[row][column][1]
-            green = array[row][column][2]
-            grey = (int(red) + int(blue) + int(green)) / 3
-            total_grey += grey
-    total_grey = int(total_grey // (size * size))
-    for row in range(i, i + size):
-        for column in range(j, j + size):
-            array[row][column][0] = int(total_grey // grad) * grad
-            array[row][column][1] = int(total_grey // grad) * grad
-            array[row][column][2] = int(total_grey // grad) * grad
+    sum = int(np.sum(array[i:i + size, j:j + size, 0]) + np.sum(array[i:i + size, j:j + size, 1])
+              + np.sum(array[i:i + size, j:j + size, 2])) / 3
+    total_grey = int(sum // (size * size))
+    array[i:i + size, j:j + size, 0] = int(total_grey // grad) * grad
+    array[i:i + size, j:j + size, 1] = int(total_grey // grad) * grad
+    array[i:i + size, j:j + size, 2] = int(total_grey // grad) * grad
 
 
 img = Image.open("img2.jpg")
